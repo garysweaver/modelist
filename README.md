@@ -61,7 +61,7 @@ Example output:
     1 (out of 2): bartenders.order_id -> order
     1 (out of 2): bartenders.beer_id -> beers
 
-Specify '--output-file' to provide an pathname of an errors file.
+Specify --output-file to provide an pathname of an errors file.
 
 ##### Required
 
@@ -90,7 +90,40 @@ or:
 
 Example output:
 
-Specify '--output-file' to provide an pathname of an errors file.
+    (...example data from models and attributes...)
+    ---
+
+
+    FAILED: MyModel
+
+    ---
+    MyModel.last.some_associations: PG::Error: ERROR:  operator does not exist: character varying = integer
+    LINE 1: ...oobars"  WHERE "foobars"."my_model_id" = 7
+                                        ^
+    (...continued and backtrace...)
+    ---
+    (...more errors...)
+
+
+    Passed (258):
+    ---
+    AnotherGoodModel
+    GoodModel
+    ...
+
+    Warnings (123):
+    ---
+    Foo.first was nil. Assuming there is no data in the associated table, but please verify.
+    ...
+
+    Failed (85):
+    ---
+    Bar
+    Foobar
+    MyModel
+
+
+Specify --output-file to provide an pathname of an errors file.
 
 ### API
 
