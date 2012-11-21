@@ -8,8 +8,6 @@ module Modelist
       # load Rails environment
       require './config/environment'
       require 'modelist/tester'
-      #args = options[:models] ? options.delete(:models).split(',').collect{|s|s.strip} << options : []
-      puts "args=#{args.inspect}"
       args.each {|a| puts "Unsupported option: #{args.delete(a)}" if a.to_s.starts_with?('-')}
       exit ::Modelist::Tester.test_models(*args) ? 0 : 1
     end
@@ -19,9 +17,6 @@ module Modelist
       # load Rails environment
       require './config/environment'
       require 'modelist/analyst'
-      # args are [*options[:models], options hash (minus the models)]
-      #args = options[:models] ? options.delete(:models).split(',').collect{|s|s.strip} << options : []
-      puts "args=#{args.inspect}"
       args.each {|a| puts "Unsupported option: #{args.delete(a)}" if a.to_s.starts_with?('-')}
       Modelist::Analyst.find_required_models(*args)
       exit 0
@@ -33,8 +28,6 @@ module Modelist
       # load Rails environment
       require './config/environment'
       require 'modelist/circular_ref_checker'
-      #args = options[:models] ? options.delete(:models).split(',').collect{|s|s.strip} << options : []
-      puts "args=#{args.inspect}"
       args.each {|a| puts "Unsupported option: #{args.delete(a)}" if a.to_s.starts_with?('-')}
       exit ::Modelist::CircularRefChecker.test_models(*args) ? 0 : 1
     end
