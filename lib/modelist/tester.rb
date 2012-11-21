@@ -164,6 +164,11 @@ module Modelist
             elsif (value.is_a?(Array) && value.size == 0)
               #results[:warnings] << "(ignore) #{model_class_name}.#{association_name} was empty"
             end
+            if [:belongs_to, :has_one].include?(reflection.macro) && association_name.to_sym != association_name.to_s.singularize.to_sym && !association_name.to_s.end_with?('ess') && !association_name.to_s.end_with?('us')
+              results[:warnings] << "#{model_class.name}'s #{reflection.macro} #{association_name.to_sym.inspect} may need to be singularized to #{association_name.to_s.singularize}?"
+            elsif [:has_many, :has_and_belongs_to_many].include?(reflection.macro) && association_name.to_sym != association_name.to_s.pluralize.to_sym
+              results[:warnings] << "#{model_class.name}'s #{reflection.macro} #{association_name.to_sym.inspect} may need to be pluralized to #{association_name.to_s.pluralize}?"
+            end
           rescue Exception => e
             method_name_to_exception["#{model_class.name}.last.#{association_name}"] = e
           end

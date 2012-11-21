@@ -114,6 +114,7 @@ Example output:
     Warnings (123):
     ---
     Foo.first was nil. Assuming there is no data in the associated table, but please verify.
+    Bar's belongs_to :waitresses may need to be singularized to waitress?
     ...
 
     Failed (85):
