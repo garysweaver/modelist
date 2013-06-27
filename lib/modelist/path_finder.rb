@@ -97,7 +97,7 @@ module Modelist
           #puts "already processed #{this_class_assoc}"
           print '-'; $stdout.flush
           if preprocessed_results.length > 0
-            results << (current_node_list + [this_class_assoc] + preprocessed_results)
+            results << (current_node_list + preprocessed_results)
             #raise "bug in preprocessed! should start with #{from} but have result #{format_result_string(results.last)}" if current_node_list[0].split('.')[0] != from
           end
         elsif next_class == to
