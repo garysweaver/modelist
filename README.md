@@ -149,14 +149,14 @@ Given two model names will find known paths:
 
 Example output:
 
-    checking for path from user to contact...
+    checking for path from foobar to barfoo...
     +++++++-+-++--+------
 
-    Paths from user to role (278):
+    Paths from foobar to barfoo (2):
 
-    user.role -> role
+    foobar.barfoo -> barfoo
 
-    user.account -> account.role -> role
+    foobar.foo -> foo.barfoos -> barfoo
 
 
 ### API
