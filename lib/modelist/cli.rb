@@ -1,4 +1,5 @@
 require 'thor'
+require 'modelist/path_finder'
 
 module Modelist
   class CLI < Thor
@@ -30,6 +31,23 @@ module Modelist
       require 'modelist/circular_ref_checker'
       args.each {|a| puts "Unsupported option: #{args.delete(a)}" if a.to_s.starts_with?('-')}
       exit ::Modelist::CircularRefChecker.test_models(*args) ? 0 : 1
+    end
+
+    desc "search", "Given a (partial) model/tablename/column/association name, finds all matching models/associations."
+    def search(*args)
+      # load Rails environment
+      require './config/environment'
+      require 'modelist/searcher'
+      args.each {|a| puts "Unsupported option: #{args.delete(a)}" if a.to_s.starts_with?('-')}
+      exit ::Modelist::Searcher.find_all(*args) ? 0 : 1
+    end
+
+    desc "paths", "Given two model names will find known paths."
+    def paths(*args)
+      # load Rails environment
+      require './config/environment'      
+      args.each {|a| puts "Unsupported option: #{args.delete(a)}" if a.to_s.starts_with?('-')}
+      exit ::Modelist::PathFinder.find_all(*args) ? 0 : 1
     end
   end
 end

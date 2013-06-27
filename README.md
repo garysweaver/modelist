@@ -126,14 +126,49 @@ Example output:
 
 Specify --output-file to provide an pathname of an errors file.
 
+##### Search
+
+Given a (partial) model/tablename/column/association name, finds all matching models/associations:
+
+    bundle exec modelist search partial_search_string
+
+Example output:
+
+    Models:
+      Foo (table: foos)
+      Foobar (table: foobars)
+    Associations:
+      Bar (table: bars), association: foo (macro: belongs_to, options: {})
+      Loo (table: loos), association: f_users (macro: has_one, options: {:foreign_key=>:foo_id})
+
+##### Path Finder
+
+Given two model names will find known paths:
+
+    bundle exec modelist paths my_model_1 my_model_2 
+
+Example output:
+
+    checking for path from user to contact...
+    +++++++-+-++--+------
+
+    Paths from user to role (278):
+
+    user.role -> role
+
+    user.account -> account.role -> role
+
+
 ### API
 
     Modelist::Analyst.find_required_models(:model1, :model2)
     Modelist::CircularRefChecker.test_models(:model1, :model2, output_file: true)
     Modelist::Tester.test_models(:model1, :model2, output_file: true)
+    Modelist::Searcher.find_all('foo')
+    Modelist::PathFinder.find_all(:model1, :model2)
 
 ### License
 
-Copyright (c) 2012 Gary S. Weaver, released under the [MIT license][lic].
+Copyright (c) 2012-2013 Gary S. Weaver, released under the [MIT license][lic].
 
 [lic]: http://github.com/garysweaver/modelist/blob/master/LICENSE
