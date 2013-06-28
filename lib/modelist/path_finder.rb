@@ -1,6 +1,5 @@
 module Modelist
   class PathFinder
-    DEFAULT_MAX_PATHS = 35
 
     def self.clean_underscore(classname)
       classname = classname[2..classname.length] if classname.start_with?('::')

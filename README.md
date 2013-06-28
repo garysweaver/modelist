@@ -151,12 +151,12 @@ Example output:
 
     checking for path from foobar to barfoo...
     +++++++-+-++--+------
-
+    
     Paths from foobar to barfoo (2):
-
-    foobar.barfoo -> barfoo
-
+    
     foobar.foo -> foo.barfoos -> barfoo
+    
+    foobar.barfoo -> barfoo
 
 
 ### API
